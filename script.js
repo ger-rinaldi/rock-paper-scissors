@@ -64,11 +64,11 @@ function computerWins(playerSelection, computerSelection) {
 }
 
 function game() {
-    const roundsToPlay = 5;
+    const roundsToPlay = 5, minWinsRequired = Math.ceil(roundsToPlay / 2);
     let playerVictories = 0, computerVictories = 0;
     let roundCurrent = 1;
 
-    while (roundCurrent <= roundsToPlay) {
+    while (roundCurrent <= roundsToPlay && (playerVictories < minWinsRequired && computerVictories < minWinsRequired)) {
 
         alert(`Rounds to be played: ${roundsToPlay}\n
                 Current round: ${roundCurrent}\n
@@ -83,7 +83,6 @@ function game() {
         computerVictories += (roundResult.slice(4, 7) === "los") ? 1 : 0;
         roundCurrent++;
 
-        // if someone got 3 victories, break
     }
 
     if (playerVictories > computerVictories) {
