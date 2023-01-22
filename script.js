@@ -62,3 +62,35 @@ function computerWins(playerSelection, computerSelection) {
     if (computerSelection === scissors && playerSelection === paper) { return true; }
     return false;
 }
+
+function game() {
+    const roundsToPlay = 5;
+    let playerVictories = 0, computerVictories = 0;
+    let roundCurrent = 1;
+
+    while (roundCurrent <= roundsToPlay) {
+
+        alert(`Rounds to be played: ${roundsToPlay}\n
+                Current round: ${roundCurrent}\n
+                Player: ${playerVictories}\n
+                Computer: ${computerVictories}`)
+
+        let roundResult = playRound(getPlayerChoice(), getComputerChoice());
+
+        alert(roundResult);
+        
+        playerVictories += (roundResult.slice(4, 7) === "win") ? 1 : 0;
+        computerVictories += (roundResult.slice(4, 7) === "los") ? 1 : 0;
+        roundCurrent++;
+
+        // if someone got 3 victories, break
+    }
+
+    if (playerVictories > computerVictories) {
+        alert("You have won!")
+    } else {
+        alert("The computer has won...")
+    }
+}
+
+game();
