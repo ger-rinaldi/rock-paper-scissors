@@ -31,3 +31,20 @@ function getComputerChoice() {
     return computerChoice;
 }
 
+function getPlayerChoice() {
+    let playerSelection = null;
+    do {
+        playerSelection = prompt("Choose: \nRock \nPaper \nScissors")
+        playerSelection = playerSelection.toLowerCase()
+        if (validPlayerSelection(playerSelection)) { return playerSelection; }
+        else { alert("Invalid anser, please select one of the given choices."); }
+
+    } while (true);
+}
+
+function validPlayerSelection(playerSelection) {
+    if (playerSelection === rock) return true;
+    if (playerSelection === paper) return true;
+    if (playerSelection === scissors) return true;
+    return false;
+}
