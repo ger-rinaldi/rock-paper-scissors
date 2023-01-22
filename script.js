@@ -77,11 +77,14 @@ function game() {
 
         let roundResult = playRound(getPlayerChoice(), getComputerChoice());
 
+        if (roundResult.slice(-4, -1) !== "tie") {
+            playerVictories += (roundResult.slice(4, 7) === "win") ? 1 : 0;
+            computerVictories += (roundResult.slice(4, 7) === "los") ? 1 : 0;
+            roundCurrent++;
+        } else {
+            roundResult += " You'll have to replay that round..."
+        }
         alert(roundResult);
-        
-        playerVictories += (roundResult.slice(4, 7) === "win") ? 1 : 0;
-        computerVictories += (roundResult.slice(4, 7) === "los") ? 1 : 0;
-        roundCurrent++;
 
     }
 
