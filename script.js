@@ -85,11 +85,15 @@ function game() {
 
     }
 
-    if (playerVictories > computerVictories) {
-        alert("You have won!")
-    } else {
-        alert("The computer has won...")
-    }
+    alert(gameWinner(playerVictories, computerVictories));
+
 }
 
+function gameWinner(playerVictories, computerVictories) {
+    if (playerVictories > computerVictories) {
+        return "You have won!"
+    } else {
+        return "The computer has won..."
+    }
+}
 game();
