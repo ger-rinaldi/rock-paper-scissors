@@ -1,0 +1,10 @@
+body{
+    background-color: aquamarine;
+    font-family: monospace, sans-serif, Verdana;
+    font-size: larger;
+    font-weight: 700;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
