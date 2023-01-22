@@ -48,3 +48,15 @@ function validPlayerSelection(playerSelection) {
     if (playerSelection === scissors) return true;
     return false;
 }
+
+function playRound(playerSelection, computerSelection) {
+    //tie condition
+    if (playerSelection === computerSelection) { return "It's a tie!"; }
+    // computer wins conditions
+    if (computerSelection === rock && playerSelection === scissors) { return `You lose! ${computerSelection} beats ${playerSelection}`; }
+    if (computerSelection === paper && playerSelection === rock) { return `You lose! ${computerSelection} beats ${playerSelection}`; }
+    if (computerSelection === scissors && playerSelection === paper) { return `You lose! ${computerSelection} beats ${playerSelection}`; }
+    // if its not a tie and computer didn't win, then you did!
+    return `You win! ${playerSelection} beats ${computerSelection}`;
+
+}
