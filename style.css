@@ -1,5 +1,4 @@
 *{
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -52,17 +51,27 @@ body{
 }
 /* for debugging  */
 .points-container{
-    border: solid blue;
+    text-align: center;
 }
 
 .choices-container {
-    border: solid yellow;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.choices-container > *{
+    display: flex;
+    flex-direction: column;
 }
 
 .png{
-    width: 200px;
+    width: 150px;
 }
 
 .footer{
-    border: solid green;
+    background: #3a495a;
+    text-align: center;
+    color: #a8d0ff;
+    padding: 4px;
 }
