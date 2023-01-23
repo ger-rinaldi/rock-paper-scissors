@@ -65,8 +65,18 @@ body{
     flex-direction: column;
 }
 
+.player > *, .computer > *{
+    display: flex;
+    align-items: center;
+}
+
 .png{
     width: 150px;
+}
+
+.player > * >.png:hover{
+    transform: scale(1.20);
+    transition: ease;
 }
 
 .footer{
