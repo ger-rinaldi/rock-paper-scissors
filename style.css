@@ -60,7 +60,7 @@ body{
 
 }
 
-.choices-container > *{
+.choices-container > .player, .computer{
     display: flex;
     flex-direction: column;
 }
@@ -77,6 +77,25 @@ body{
 .player > * >.png:hover{
     transform: scale(1.20);
     transition: ease;
+}
+
+.round-result-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.display-choices{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.display-choices > * {
+    width: 200px;
+    text-align: center;
 }
 
 .footer{
