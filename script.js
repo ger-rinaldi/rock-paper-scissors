@@ -100,3 +100,6 @@ function gameWinner(playerVictories, computerVictories) {
     }
 }
 game();
+
+alert("Hey, just a thing...");
+alert("the page you're about to see it's the prototype\nthat I'll use once I've learned\nthe next few lessons... hope you like it! ");
