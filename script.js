@@ -20,21 +20,24 @@ let playerPoints = 0;
 let compPoints = 0;
 // ELEMENTS of user and computer
 // USER
-const weaponsPlayer = document.querySelectorAll(".player-button")
-const rockPlayer = weaponsPlayer[0]
-const paperPlayer = weaponsPlayer[1]
-const scissorsPlayer = weaponsPlayer[2]
+const weaponsPlayer = document.querySelectorAll(".player-button");
+const rockPlayer = weaponsPlayer[0];
+const paperPlayer = weaponsPlayer[1];
+const scissorsPlayer = weaponsPlayer[2];
 // COMPUTER
-const weaponsComp = document.querySelectorAll(".computer-button")
-const rockComp = weaponsComp[0]
-const paperComp = weaponsComp[1]
-const scissorsComp = weaponsComp[2]
+const weaponsComp = document.querySelectorAll(".computer-button");
+const rockComp = weaponsComp[0];
+const paperComp = weaponsComp[1];
+const scissorsComp = weaponsComp[2];
 // Display elements
 const displayPoints = document.querySelector(".points-display");
 const displayPlayerChoice = document.querySelector(".player-choice");
 const displayComputerChoice = document.querySelector(".computer-choice");
 const displayOutcoome = document.querySelector(".winnermessage");
-
+// add listeners to player weapon choices
+rockPlayer.addEventListener('click', actionsOnPlayerChoice);
+paperPlayer.addEventListener('click', actionsOnPlayerChoice);
+scissorsPlayer.addEventListener('click', actionsOnPlayerChoice);
 // FUNCTIONS
 function actionsOnPlayerChoice(event) {
     // Variables
@@ -44,11 +47,11 @@ function actionsOnPlayerChoice(event) {
     const computerElement = getComputerWeaponElement(compChoice);
     let result = "";
 
-    clearPreviousChoice()
+    clearPreviousChoice();
     //Modify Player Space
     changeWeaponState(playerElement, playerChoice);
     // Modify compupter Space
-    changeWeaponState(computerElement,compChoice)
+    changeWeaponState(computerElement, compChoice);
     
     // get the result, add points
     result = playRound(playerChoice, compChoice);
@@ -59,31 +62,37 @@ function actionsOnPlayerChoice(event) {
     actualizeOutcomeText(playerChoice, compChoice, result);
     changeWeaponState(displayPlayerChoice.lastElementChild, playerChoice, result[0]);
     changeWeaponState(displayComputerChoice.lastElementChild, compChoice, result[1]);
-    //computerChoiceDisplay.lastElementChild.src = `./images/computer-${compChoice}-${result[1]}.png`;
-
+    // display the winner of match!
+    let winner = (playerPoints > compPoints) ? " you!" : (compPoints > playerPoints) ? " the computer..." : "not yet"
+    if (playerPoints === 5 || compPoints === 5)
+    {
+        displayPoints.textContent = `It's over! The winner is... ${winner}`;
+        playerPoints = 0;
+        compPoints = 0;
+    }
 }
 
 function actualizeOutcomeText(playerChoice, compChoice, result) {
-    displayPlayerChoice.firstElementChild.textContent = `↓ Your choice is ${playerChoice}`
-    displayComputerChoice.firstElementChild.textContent = `↓ Computer choice is ${compChoice}`
-    displayOutcoome.textContent = `You've ${result[0]}`
-    displayPoints.textContent = `You are ${playerPoints} points - Computer is ${compPoints} points`
+    displayPoints.textContent = `You are ${playerPoints} points - Computer is ${compPoints} points`;
+
+    displayPlayerChoice.firstElementChild.textContent = `↓ Your choice is ${playerChoice}`;
+    displayComputerChoice.firstElementChild.textContent = `↓ Computer choice is ${compChoice}`;
+
+    if (result[0] === WIN) { displayOutcoome.textContent = "You've won this round!" ; }
+    else if (result[0] === LOST) { displayOutcoome.textContent = "You've lost this round..." ; }
+    else if (result[0] === TIE) { displayOutcoome.textContent = "It's a tie! " ; }
 }
 
 function changeWeaponState(element, weapon, state = CHOSEN) {
     let person = "player";
-    if (element.classList[0] === "computer") { person = "computer"; }
+    if (element.classList[1] === "computer-button") { person = "computer"; }
     let src = `./images/${person}-${weapon}-${state}.png`;
     element.src = src;
 }
 
 function clearPreviousChoice() {
-    changeWeaponState(rockPlayer, ROCK, "neutral")
-    changeWeaponState(paperPlayer, PAPER, "neutral")
-    changeWeaponState(scissorsPlayer, SCISSORS, "neutral")
-    changeWeaponState(rockComp, ROCK, "neutral")
-    changeWeaponState(paperComp, PAPER, "neutral")
-    changeWeaponState(scissorsComp, SCISSORS, "neutral")
+    weaponsPlayer.forEach((element) => changeWeaponState(element, element.classList[0], "neutral"))
+    weaponsComp.forEach((element) => changeWeaponState(element, element.classList[0], "neutral"))
 }
 
 function getComputerWeaponElement(choice) {
@@ -95,9 +104,9 @@ function getComputerWeaponElement(choice) {
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 30) + 1;
 
-    if (randomNumber > 0 && randomNumber <= 10) { return ROCK };
-    if (randomNumber > 10 && randomNumber <= 20) { return PAPER };
-    if (randomNumber > 20 && randomNumber <= 30) { return SCISSORS };
+    if (randomNumber > 0 && randomNumber <= 10) { return ROCK; }
+    if (randomNumber > 10 && randomNumber <= 20) { return PAPER; }
+    if (randomNumber > 20 && randomNumber <= 30) { return SCISSORS; }
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -113,9 +122,3 @@ function computerWins(playerSelection, computerSelection) {
     if (computerSelection === SCISSORS && playerSelection === PAPER) { return true; }
     return false;
 }
-
-// main
-
-rockPlayer.addEventListener('click', actionsOnPlayerChoice)
-paperPlayer.addEventListener('click', actionsOnPlayerChoice)
-scissorsPlayer.addEventListener('click', actionsOnPlayerChoice)
