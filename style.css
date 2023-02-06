@@ -57,6 +57,7 @@ body{
 .choices-container {
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 3em;
 
 }
 
@@ -99,6 +100,9 @@ body{
 }
 
 .footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     background: #3a495a;
     text-align: center;
     color: #a8d0ff;
