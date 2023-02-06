@@ -20,17 +20,17 @@ let playerPoints = 0;
 let compPoints = 0;
 // ELEMENTS of user and computer
 // USER
-const weaponsPlayer = document.querySelectorAll(".player")
+const weaponsPlayer = document.querySelectorAll(".player-button")
 const rockPlayer = weaponsPlayer[0]
 const paperPlayer = weaponsPlayer[1]
 const scissorsPlayer = weaponsPlayer[2]
 // COMPUTER
-const weaponsComp = document.querySelectorAll(".computer")
-const rockComp = weaponsComp[1]
-const paperComp = weaponsComp[2]
-const scissorsComp = weaponsComp[3]
+const weaponsComp = document.querySelectorAll(".computer-button")
+const rockComp = weaponsComp[0]
+const paperComp = weaponsComp[1]
+const scissorsComp = weaponsComp[2]
 // Display elements
-const displayPoints = document.querySelector(".points-container");
+const displayPoints = document.querySelector(".points-display");
 const displayPlayerChoice = document.querySelector(".player-choice");
 const displayComputerChoice = document.querySelector(".computer-choice");
 const displayOutcoome = document.querySelector(".winnermessage");
@@ -39,7 +39,7 @@ const displayOutcoome = document.querySelector(".winnermessage");
 function actionsOnPlayerChoice(event) {
     // Variables
     const playerElement = event.currentTarget;
-    const playerChoice = playerElement.classList[1];
+    const playerChoice = playerElement.classList[0];
     const compChoice = getComputerChoice();
     const computerElement = getComputerWeaponElement(compChoice);
     let result = "";
@@ -67,7 +67,7 @@ function actualizeOutcomeText(playerChoice, compChoice, result) {
     displayPlayerChoice.firstElementChild.textContent = `↓ Your choice is ${playerChoice}`
     displayComputerChoice.firstElementChild.textContent = `↓ Computer choice is ${compChoice}`
     displayOutcoome.textContent = `You've ${result[0]}`
-    displayPoints.firstElementChild.textContent = `You are ${playerPoints} points - Computer is ${compPoints} points`
+    displayPoints.textContent = `You are ${playerPoints} points - Computer is ${compPoints} points`
 }
 
 function changeWeaponState(element, weapon, state = CHOSEN) {
